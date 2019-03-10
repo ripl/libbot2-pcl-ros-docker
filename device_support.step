@@ -1,0 +1,51 @@
+#!/bin/bash
+
+# This script expects the following binary variables to be set
+#
+#   OPENNI_SUPPORT
+#   OPENNI2_SUPPORT
+#   REALSENSE_SUPPORT
+#
+
+# OPENNI
+if [ "$OPENNI_SUPPORT" = 1 ]; then
+  echo 'Installing support for OpenNI'
+  # install dependencies
+  apt update \
+  && apt install -y \
+    libusb-1.0-0-dev \
+  && rm -rf /var/lib/apt/lists/*
+fi
+
+
+# OPENNI2
+if [ "$OPENNI2_SUPPORT" = 1 ]; then
+  echo 'Installing support for OpenNI2'
+  # install dependencies
+  apt update \
+  && apt install -y \
+    libusb-1.0-0-dev \
+  && rm -rf /var/lib/apt/lists/*
+fi
+
+# REALSENSE
+if [ "$REALSENSE_SUPPORT" = 1 ]; then
+  echo 'Installing support for RealSense Cameras'
+  # add apt repository
+  apt-key adv \
+    --keyserver keys.gnupg.net \
+    --recv-key C8B3A55A6F3EFCDE \
+  || apt-key adv \
+    --keyserver hkp://keyserver.ubuntu.com:80 \
+    --recv-key C8B3A55A6F3EFCDE
+  add-apt-repository \
+    "deb http://realsense-hw-public.s3.amazonaws.com/Debian/apt-repo xenial main" \
+    -u
+  # install dependencies
+  apt update \
+  && apt install -y \
+    librealsense2-dkms \
+    librealsense2-utils \
+    librealsense2-dev \
+  && rm -rf /var/lib/apt/lists/*
+fi
