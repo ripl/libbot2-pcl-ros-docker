@@ -1,5 +1,3 @@
-# Ignore everything
-**
-
-# Allow files and directories
-!/device_support.step
+README.md
+Dockerfile
+.dockerignore
