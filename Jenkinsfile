@@ -1,7 +1,7 @@
 pipeline {
   agent any
   environment {
-    BASE_IMAGE = "ripl/libbot2-pcl:latest"
+    BASE_IMAGE = "ripl/libbot2-ros:latest"
     BUILD_IMAGE = "ripl/libbot2-pcl-ros:latest"
   }
   stages {
